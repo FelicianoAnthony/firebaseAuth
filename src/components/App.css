@@ -13,7 +13,17 @@ div,p {
 
 }
 
-#form-id{
+h1, p {
+	text-align:center
+}
+
+li{
+  list-style-type: none;
+  text-align:center
+}
+
+
+/*#form-id{
 	margin-top: 150px
 }
 
@@ -22,8 +32,5 @@ h1 {
 	margin-top: 0
 }
 
-h1, p {
-	text-align:center
-}
 
-
+*/

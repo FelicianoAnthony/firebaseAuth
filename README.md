@@ -1,4 +1,4 @@
-USER authentication w/ firebase 
+User authentication w/ firebase 
 ======
 
 # How to...
@@ -13,7 +13,7 @@ USER authentication w/ firebase
 
 
 
-3. copy authorization config settings from project overview tab & paste into ./firebase/firebase.js
+3. copy authorization config settings from `project overview` tab & paste into `./firebase/firebase.js`
 
 
 
@@ -40,6 +40,22 @@ What it does:
 
 
 4. throws error if sign up email already exists
+
+
+
+
+### Sign In Window
+
+![alt text](screenshots/sign-in-page.png)
+
+### Sign Up Window
+
+![alt text](screenshots/sign-up.png)
+
+### Signed In Window 
+
+![alt text](screenshots/signed-in-page.png)
+
 
 
 
