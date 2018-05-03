@@ -3,14 +3,14 @@ import {
 	Link,
 	withRouter,
 } from 'react-router-dom';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 import * as routes from '../constants/routes';
 
 
 
 const SignUpPage = ({ history }) =>
   <div>
-    <h1>SignUp</h1>
+    <h1 className="sign-in-label">Sign Up</h1>
     <SignUpForm history={history} />
   </div>
 
@@ -51,8 +51,16 @@ class SignUpForm extends Component {
 
     auth.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
-        this.setState(() => ({ ...INITIAL_STATE }));
-        history.push(routes.HOME);
+        
+        // Create a user in your own accessible Firebase Database too
+        db.doCreateUser(authUser.uid, username, email)
+          .then(() => {
+            this.setState(() => ({ ...INITIAL_STATE }));
+            history.push(routes.HOME);
+          })
+          .catch(error => {
+            this.setState(byPropKey('error', error));
+          });
       })
       .catch(error => {
         this.setState(byPropKey('error', error));
@@ -79,36 +87,49 @@ class SignUpForm extends Component {
 
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          value={username}
-          onChange={event => this.setState(byPropKey('username', event.target.value))}
-          type="text"
-          placeholder="Full Name"
-        />
-        <input
-          value={email}
-          onChange={event => this.setState(byPropKey('email', event.target.value))}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          value={passwordOne}
-          onChange={event => this.setState(byPropKey('passwordOne', event.target.value))}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          value={passwordTwo}
-          onChange={event => this.setState(byPropKey('passwordTwo', event.target.value))}
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign Up
-        </button>
-
-        { error && <p>{error.message}</p> }
+      <form id="form-id"className="form-1" onSubmit={this.onSubmit}>
+        <div className="form-group">
+          <input
+            className="form-control"
+            value={username}
+            onChange={event => this.setState(byPropKey('username', event.target.value))}
+            type="text"
+            placeholder="Full Name"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            className="form-control"
+            value={email}
+            onChange={event => this.setState(byPropKey('email', event.target.value))}
+            type="text"
+            placeholder="Email Address"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            className="form-control"
+            value={passwordOne}
+            onChange={event => this.setState(byPropKey('passwordOne', event.target.value))}
+            type="password"
+            placeholder="Password"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            className="form-control"
+            value={passwordTwo}
+            onChange={event => this.setState(byPropKey('passwordTwo', event.target.value))}
+            type="password"
+            placeholder="Confirm Password"
+          />
+        </div>
+        <div className="form-group">
+          <button className="btn btn-primary" disabled={isInvalid} type="submit">
+            Sign Up
+          </button>
+          { error && <p>{error.message}</p> }
+        </div>
       </form>
     );
   }

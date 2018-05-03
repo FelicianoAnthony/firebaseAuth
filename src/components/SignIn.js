@@ -3,13 +3,15 @@ import { withRouter } from 'react-router-dom';
 
 import { SignUpLink } from './SignUp';
 import { auth } from '../firebase';
+import { PasswordForgetLink } from './PasswordForget';
 import * as routes from '../constants/routes';
 import './App.css'
 
 const SignInPage = ({ history }) =>
   <div>
-    <h1>SignIn</h1>
+    <h1>Sign In</h1>
     <SignInForm history={history} />
+    <PasswordForgetLink />
     <SignUpLink />
   </div>
 
@@ -64,24 +66,31 @@ class SignInForm extends Component {
       email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          value={email}
-          onChange={event => this.setState(byPropKey('email', event.target.value))}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          value={password}
-          onChange={event => this.setState(byPropKey('password', event.target.value))}
-          type="password"
-          placeholder="Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign In
-        </button>
-
-        { error && <p>{error.message}</p> }
+      <form id="form-id" onSubmit={this.onSubmit}>
+        <div className="form-group">
+          <input
+            className="form-control"
+            value={email}
+            onChange={event => this.setState(byPropKey('email', event.target.value))}
+            type="text"
+            placeholder="Email Address"
+          />
+        </div>
+        <div>
+          <input
+            className="form-control"
+            value={password}
+            onChange={event => this.setState(byPropKey('password', event.target.value))}
+            type="password"
+            placeholder="Password"
+          />
+        </div>
+        <div className="form-group">
+          <button  className="btn btn-primary" disabled={isInvalid} type="submit">
+            Sign In
+          </button>
+          { error && <p>{error.message}</p> }
+        </div>
       </form>
     );
   }

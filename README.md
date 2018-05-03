@@ -8,12 +8,12 @@ USER authentication w/ firebase
 
 
 
-2. create firebase project 
+2. create firebase project @ https://firebase.google.com/ 
 
 
 
 
-3.copy authorization config settings from project overview tab & paste into ./firebase/firebase.js
+3. copy authorization config settings from project overview tab & paste into ./firebase/firebase.js
 
 
 
@@ -29,8 +29,18 @@ What it does:
 
 
 
-2. only show sign out button if user successfully signed in 
+
+2. shows home page only if user signed in/sign out if user signed in 
 
 
 
-3. throws error if sign up email already exists
+
+3. change password in /account & option to have firebase email link to reset password 
+
+
+
+4. throws error if sign up email already exists
+
+
+
+https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/
