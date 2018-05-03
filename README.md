@@ -46,7 +46,7 @@ What it does:
 
 ### Sign In Window
 
-![alt text](screenshots/sign-in-page.png)
+![alt text](screenshots/sign-in.png)
 
 ### Sign Up Window
 
