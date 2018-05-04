@@ -1,12 +1,12 @@
 import * as firebase from 'firebase';
 
 const config = {
-apiKey: "AIzaSyAB1Npr_1nhzbNPQ8pIHYWujJLegePMvyk",
-authDomain: "myauth-d63ad.firebaseapp.com",
-databaseURL: "https://myauth-d63ad.firebaseio.com",
-projectId: "myauth-d63ad",
+apiKey: "",
+authDomain: "",
+databaseURL: "",
+projectId: "",
 storageBucket: '',
-messagingSenderId: "704362246246",
+messagingSenderId: "",
 }
 
 if (!firebase.apps.length) {
